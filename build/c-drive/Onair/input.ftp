@@ -1,0 +1,9 @@
+user nowplaying@wtmd.org
+verbose
+binary
+cd /onair
+pwd
+lcd var
+put schedule.json
+delete same
+quit

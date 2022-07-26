@@ -1,0 +1,17 @@
+# Copyright (C) 2022 Mark D. Blackwell.
+#   All rights reserved.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+[Unit]
+Description=Occasionally restart the websocat web socket server
+
+[Service]
+Type=simple
+ExecStart=/home/mark/onair/update-check.sh
+# 3 means errors and worse:
+LogLevelMax=3
+
+[Install]
+WantedBy=websocat-update-check.timer

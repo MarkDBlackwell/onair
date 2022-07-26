@@ -1,0 +1,10 @@
+/build/c-drive/Onair/data/
+/build/c-drive/Onair/var/
+/develop-tmp/
+/out/
+/src/RememberSongs-src.html
+/src/SetUp.js
+/var/
+*.pkcs12
+all.tar
+*-min.*

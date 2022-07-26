@@ -1,0 +1,18 @@
+# Copyright (C) 2022 Mark D. Blackwell.
+#   All rights reserved.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+[Unit]
+Description=Websocat web socket server
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/local/bin/websocat --async-stdio --binary --exit-on-eof --one-message -q  --ping-interval 180 --ping-timeout 300 --pkcs12-der /home/mark/onair/output.pkcs12 --restrict-uri /schedule --server-protocol FUJH9i00YlfhAE2W0gsl wss-listen:0.0.0.0:8080 reuse:-
+User=mark
+
+[Install]
+WantedBy=multi-user.target

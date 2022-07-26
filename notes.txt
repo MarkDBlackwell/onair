@@ -1,0 +1,63 @@
+Analogs to useful Windows batch variables:
+
+# The path to the current working directory (without a trailing separator):
+original_working_location="$( echo $PWD )"
+echo "original_working_location = $original_working_location"
+
+# The path to the directory containing this script (without a trailing separator):
+script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
+echo "script_directory = $script_directory"
+
+project_directory=$script_directory/../../..
+echo "project_directory = $project_directory"
+
+-------------------
+I am running Debian Bullseye on an Amazon Web Services (AWS) server.
+
+Its domain name is registered through a website hosting company. They provide it with Let's Encrypt authentication.
+
+Presumably Let's Encrypt is using the `DNS-01 challenge` TXT record method to verify that the website hosting company controls the domain name of my AWS server.
+
+No software on my AWS server interacts (I believe) with Let's Encrypt to get the proper certificates, yet web browsers can use https: just fine.
+
+Bullseye initially installed Debian's version of `certbot`, which uses their "snakeoil" certificate. I have not installed another version of `certbot`.
+
+I would like my AWS server to provide secure access to a particular program not on the world-wide web's usual ports of 80 or 443 without going through a webserver such as Apache or Nginx. The program needs a PKCS-12 file constructed from a private key and a certificate of authority, both for my AWS server.
+
+The desired program is a websocket server named `websocat`.
+
+In the Firefox browser (under Menu, Tools, Page Info, Security, View Certificate), I can download two authentication files "PEM (cert)" and "PEM (chain)" associated with my AWS server. Openssl says neither contains the private key.
+
+On my testing server, if I construct the PKCS-12 file from the private and public files of Debian's "snakeoil" certificate, the desired program works fine—once I manually accept (in Firefox) the self-signed certificate.
+
+To run the desired program on my AWS server, should I construct the PKCS-12 file from the server's Debian "snakeoil" private key, combined with Firefox's publicized authentication file, "PEM (cert)"?
+
+Or should I repeatedly obtain my AWS server's private key from the website hosting company (whenever it is renewed)?
+
+-------------------
+I followed the helpful information in [this issue](https://github.com/vi/websocat/issues/122):
+
+1. Acquire two key files (see below) associated with the production server, from the web hosting company's web user interface;
+
+2. Place them in the 'out' directory;
+
+4. Construct the PKCS-12 file by:
+
+   a.)  openssl pkcs12 -export -out var/lets-encrypt.pkcs12 -inkey out/{production domain name}-private-key.txt -in out/{production domain name}-certificate.txt
+
+5. In FireFox, note the expiration date of the files' validity. Set a Gmail calendar alert for that date.
+
+-------------------
+I'm minifying CSS online at https://www.minifier.com/ .
+
+I'm minifying JavaScript online at https://tools.webdevpuneet.com/js-minify-and-uglify/ .
+
+I obtained:
+
+Name           Size     Transferred
+
+onair.css      841      811
+onair-min.css  444      608
+
+onair.js       15.52 K  3.70 K
+onair-min.js   2.35 K   1.49 K

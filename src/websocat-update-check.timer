@@ -1,0 +1,15 @@
+# Copyright (C) 2022 Mark D. Blackwell.
+#   All rights reserved.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+[Unit]
+Description=Execute websocat update check every minute
+
+[Timer]
+OnCalendar=*-*-* *:00/1:00
+Unit=websocat-update-check.service
+
+[Install]
+WantedBy=websocat.service

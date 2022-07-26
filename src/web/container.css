@@ -1,0 +1,13 @@
+/*
+# Copyright (C) 2022 Mark D. Blackwell.
+#   All rights reserved.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+body {
+    background-color: rgb(45, 20, 45);
+    color: rgb(255, 255, 160);
+    font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;
+}
