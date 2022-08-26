@@ -13,12 +13,6 @@ body {
     font-size: 0;
     margin: 0;
 }
-#title {
-    font-size: 16px;
-    margin-bottom: 12px;
-    margin-left: 16px;
-    margin-top: 0;
-}
 #next, #now {
     font-size: 16px;
     padding-right: 9px;
@@ -26,6 +20,7 @@ body {
 #now {
     border-left:  8px solid rgb(161, 161, 161);
     border-right: 8px solid rgb(161, 161, 161);
+    margin-top: 12px;
 }
 #now, #up {
     padding-left: 8px;

@@ -11,3 +11,9 @@ body {
     color: rgb(255, 255, 160);
     font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;
 }
+#title {
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-left: 16px;
+    margin-top: 0;
+}
