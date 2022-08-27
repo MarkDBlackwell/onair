@@ -20,9 +20,10 @@ mkdir --parents /var/www/html/onair
 cp --target-directory=/var/www/html/onair \
           container.css \
           container.html \
-          onair.css \
-          onair.html \
-          onair.js
+                                    onair.css \
+                                    onair-default.css \
+                                    onair.js \
+          onair.html
 
 cp --target-directory=/home/mark/onair \
       update-check.sh

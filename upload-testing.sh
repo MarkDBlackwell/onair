@@ -18,11 +18,15 @@ cd develop-tmp
 
 cp         ../src/test.pkcs12 output.pkcs12
 
-cp ../src/web/onair.css     onair.css
-cp ../src/web/onair.js      onair.js
 
-#cp    ../var/onair-min.css onair.css
-#cp    ../var/onair-min.js  onair.js
+
+cp ../src/web/onair.css             onair.css
+cp ../src/web/onair-default.css     onair-default.css
+cp ../src/web/onair.js              onair.js
+
+#cp    ../var/onair-min.css         onair.css
+#cp    ../var/onair-default-min.css onair-default.css
+#cp    ../var/onair-min.js          onair.js
 
 /usr/bin/tar --create --file all.tar *
 

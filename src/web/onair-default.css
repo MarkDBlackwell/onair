@@ -7,19 +7,27 @@
 */
 
 body {
-    background-color: rgb(45, 20, 45);
-    color: rgb(255, 255, 160);
+    background-color: transparent;
+    color: rgb(255, 255, 255);
     font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;
-}
-#title {
-    font-size: 16px;
-    margin-bottom: 6px;
-    margin-left: 16px;
-    margin-top: 0;
-}
-#onair {
-    border: 0;
-}
-hr {
+    font-size: 0;
     margin: 0;
+}
+#next, #now {
+    font-size: 16px;
+    padding-right: 9px;
+}
+#now {
+    border-left:  8px solid rgb(161, 161, 161);
+    border-right: 8px solid rgb(161, 161, 161);
+}
+#now, #up {
+    padding-left: 8px;
+}
+#time, #up {
+    font-size: 13px;
+}
+#up {
+    font-weight: bolder;
+    padding-right: 8px;
 }

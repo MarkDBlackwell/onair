@@ -20,9 +20,9 @@ cp ../var/lets-encrypt.pkcs12 output.pkcs12
 
 
 
-
-cp     ../var/onair-min.css onair.css
-cp     ../var/onair-min.js  onair.js
+cp     ../var/onair-min.css         onair.css
+cp     ../var/onair-default-min.css onair-default.css
+cp     ../var/onair-min.js          onair.js
 
 /usr/bin/tar --create --file all.tar *
 
