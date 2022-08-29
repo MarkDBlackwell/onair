@@ -17,25 +17,16 @@ if [ -d develop-tmp ]; then
 fi
 mkdir develop-tmp
 
+#-------------
 cp --target-directory=develop-tmp \
   src/web/container.css \
   src/web/container.html \
-\
-\
-\
+      src/install.sh \
+      src/local-settings.conf \
+  src/web/onair.css \
   src/web/onair.html \
-\
-\
-\
-  src/update-check.sh \
-\
-\
-  src/websocat.service \
-  src/websocat-update-check.service \
-  src/websocat-update-check.timer \
-\
-\
-  src/local-settings.conf \
-  src/security.conf \
-\
-  src/install.sh
+      src/security.conf \
+      src/update-check.sh \
+      src/websocat-update-check.service \
+      src/websocat-update-check.timer \
+      src/websocat.service

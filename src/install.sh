@@ -6,6 +6,8 @@
 #   but WITHOUT ANY WARRANTY; without even the implied warranty of
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+BASENAME_CSS_LOCAL=onair-local.css
+
 # The path to the directory containing this script (without a trailing separator):
 script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
 #echo "script_directory = $script_directory"
@@ -17,30 +19,34 @@ cd $script_directory
 mkdir --parents /home/mark/onair
 mkdir --parents /var/www/html/onair
 
-cp --target-directory=/var/www/html/onair \
-          container.css \
-          container.html \
-                                    onair.css \
-                                    onair-default.css \
-                                    onair.js \
-          onair.html
-
-cp --target-directory=/home/mark/onair \
-      update-check.sh
+#-------------
+cp --target-directory=/etc/apache2/conf-available \
+  local-settings.conf \
+  security.conf
 
 cp --target-directory=/etc/systemd/system \
-      websocat.service \
-      websocat-update-check.service \
-      websocat-update-check.timer
+  websocat-update-check.service \
+  websocat-update-check.timer \
+  websocat.service
 
-cp --target-directory=/etc/apache2/conf-available \
-      local-settings.conf \
-      security.conf
+cp --target-directory=/home/mark/onair \
+  output.pkcs12 \
+  update-check.sh
 
+cp --target-directory=/var/www/html/onair \
+  container.css \
+  container.html \
+  onair-default.css \
+  onair.css \
+  onair.js \
+  onair.html
 
+if [ -s $BASENAME_CSS_LOCAL ]; then
+  cp --target-directory=/var/www/html/onair \
+    $BASENAME_CSS_LOCAL
+fi
 
-cp   output.pkcs12 /home/mark/onair/output.pkcs12
-
+#-------------
 sudo apache2ctl graceful
 
 sudo systemctl daemon-reload

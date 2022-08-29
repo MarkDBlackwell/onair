@@ -16,14 +16,14 @@ src/upload-common.sh
 
 cd develop-tmp
 
-cp ../var/lets-encrypt.pkcs12 output.pkcs12
+#-------------
+cp        ../var/onair-default-min.css onair-default.css
+echo "@import \"https://wtmd.org/onair/onair.css\";" \
+                                    >> onair.css
+cp        ../var/onair-min.js          onair.js
+cp        ../var/lets-encrypt.pkcs12   output.pkcs12
 
-
-
-cp     ../var/onair-min.css         onair.css
-cp     ../var/onair-default-min.css onair-default.css
-cp     ../var/onair-min.js          onair.js
-
+#-------------
 /usr/bin/tar --create --file all.tar *
 
 echo "When prompted, enter the password for the production server."
