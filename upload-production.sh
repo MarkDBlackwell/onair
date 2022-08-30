@@ -6,6 +6,9 @@
 #   but WITHOUT ANY WARRANTY; without even the implied warranty of
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+BASENAME_CSS_LOCAL=onair-local.css
+IMPORT_START="@import \"https://wtmd.org/onair/"
+
 # The path to the directory containing this script (without a trailing separator):
 script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
 #echo "script_directory = $script_directory"
@@ -17,11 +20,10 @@ src/upload-common.sh
 cd develop-tmp
 
 #-------------
-cp        ../var/onair-default-min.css onair-default.css
-echo "@import \"https://wtmd.org/onair/onair.css\";" \
-                                    >> onair.css
-cp        ../var/onair-min.js          onair.js
-cp        ../var/lets-encrypt.pkcs12   output.pkcs12
+cp          ../var/onair-default-min.css      onair-default.css
+echo "$IMPORT_START$BASENAME_CSS_LOCAL\";" >> onair.css
+cp          ../var/onair-min.js               onair.js
+cp          ../var/lets-encrypt.pkcs12        output.pkcs12
 
 #-------------
 /usr/bin/tar --create --file all.tar *
