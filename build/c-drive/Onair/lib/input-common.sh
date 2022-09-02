@@ -8,8 +8,8 @@
 
 # The path to the directory containing this script (without a trailing separator):
 script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
-#echo "script_directory = $script_directory"
 
+#-------------
 cd $script_directory/..
 
 ruby --verbose -- input.rb data/input.txt var/schedule-verify.txt var/schedule.json

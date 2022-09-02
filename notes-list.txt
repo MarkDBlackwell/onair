@@ -20,6 +20,7 @@ https://github.com/vi/websocat
 https://github.com/vi/websocat/issues/53
 https://httpd.apache.org/docs/2.4/configuring.html
 https://httpd.apache.org/docs/2.4/sections.html
+https://httpd.apache.org/docs/2.4/sections.html#merging
 https://javascript.info/advanced-functions
 https://javascript.info/websocket
 https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux

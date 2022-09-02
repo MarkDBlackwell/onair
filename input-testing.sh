@@ -8,10 +8,10 @@
 
 # The path to the directory containing this script (without a trailing separator):
 script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
-#echo "script_directory = $script_directory"
 
+#-------------
 cd $script_directory/build/c-drive/Onair
 
 lib/input-common.sh
 
-cat input.ftp | ftp -n `cat ../../../var/domain-name-testing`
+cat input.ftp | /usr/bin/ftp -n `cat ../../../var/domain-name-testing`

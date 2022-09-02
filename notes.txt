@@ -8,7 +8,12 @@ echo "original_working_location = $original_working_location"
 script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
 echo "script_directory = $script_directory"
 
-project_directory=$script_directory/../../..
+# The script basename:
+script_basename="$( basename $0 )"
+echo "script_basename = $script_basename"
+
+# The project directory (if we're one level inward):
+project_directory=$script_directory/..
 echo "project_directory = $project_directory"
 
 -------------------

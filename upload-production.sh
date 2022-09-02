@@ -6,13 +6,13 @@
 #   but WITHOUT ANY WARRANTY; without even the implied warranty of
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# The path to the directory containing this script (without a trailing separator):
+script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
+
 BASENAME_CSS_LOCAL=onair-local.css
 IMPORT_START="@import \"https://wtmd.org/onair/"
 
-# The path to the directory containing this script (without a trailing separator):
-script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
-#echo "script_directory = $script_directory"
-
+#-------------
 cd $script_directory
 
 src/upload-common.sh
@@ -30,6 +30,6 @@ cp          ../var/lets-encrypt.pkcs12        output.pkcs12
 
 echo "When prompted, enter the password for the production server."
 
-cat ../src/session.ftp | ftp -n `cat ../build/c-drive/Onair/var/domain-name-production`
+cat ../src/session.ftp | /usr/bin/ftp -n `cat ../build/c-drive/Onair/var/domain-name-production`
 
 echo "Success"

@@ -6,12 +6,15 @@
 #   but WITHOUT ANY WARRANTY; without even the implied warranty of
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-BASENAME_CSS_LOCAL=onair-local.css
-
 # The path to the directory containing this script (without a trailing separator):
 script_directory="$( cd "$( dirname $0 )" && echo $PWD )"
-#echo "script_directory = $script_directory"
 
+# The script basename:
+script_basename="$( basename $0 )"
+
+BASENAME_CSS_LOCAL=onair-local.css
+
+#-------------
 cd $script_directory
 
 /usr/bin/tar --extract --file all.tar
@@ -53,6 +56,10 @@ sudo systemctl daemon-reload
 
 sudo systemctl restart websocat
 
-rm *.css *.conf *.html *.js *.pkcs12 *.service *.timer update-check.sh
+mv $script_basename $script_basename-save
+
+rm -fv *.css *.conf *.html *.js *.pkcs12 *.service *.sh *.timer update-check.sh
+
+mv $script_basename-save $script_basename
 
 echo "Success"
