@@ -22,10 +22,8 @@ cp --target-directory=develop-tmp \
   src/web/container.css \
   src/web/container.html \
       src/install-onair.sh \
-      src/local-settings.conf \
   src/web/onair.css \
   src/web/onair.html \
-      src/security.conf \
       src/update-check.sh \
       src/websocat-update-check.service \
       src/websocat-update-check.timer \

@@ -23,10 +23,6 @@ mkdir --parents /home/mark/onair
 mkdir --parents /var/www/html/onair
 
 #-------------
-cp --target-directory=/etc/apache2/conf-available \
-  local-settings.conf \
-  security.conf
-
 cp --target-directory=/etc/systemd/system \
   websocat-update-check.service \
   websocat-update-check.timer \
@@ -50,15 +46,13 @@ if [ -s $BASENAME_CSS_LOCAL ]; then
 fi
 
 #-------------
-sudo apache2ctl graceful
-
 sudo systemctl daemon-reload
 
 sudo systemctl restart websocat
 
 mv $script_basename $script_basename-save
 
-rm -fv *.css *.conf *.html *.js *.pkcs12 *.service *.sh *.timer update-check.sh
+rm -fv *.css *.html *.js *.pkcs12 *.service *.sh *.timer update-check.sh
 
 mv $script_basename-save $script_basename
 
