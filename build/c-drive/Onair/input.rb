@@ -37,7 +37,9 @@ end
 
 section_current = nil
 lines.each_with_index do |line, i|
-  next if line.empty?
+  stripped = line.strip
+  next if stripped.empty?
+  next if stripped.start_with?('#')
   tokens = line.split
   if 1 == tokens.length
     s = tokens.first.downcase

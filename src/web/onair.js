@@ -35,10 +35,10 @@ Copyright (C) 2022 Mark D. Blackwell.
             const timeWeekBeginning = volatile;
             {
                 const millisecondsPerSecond = 1000;
-                const minutesPerHour = 60;
+                const secondsPerMinute = 60;
                 const timeOfWeek = timeNow - timeWeekBeginning;
-                const result = Math.floor(timeOfWeek / millisecondsPerSecond / minutesPerHour);
-                return result;
+                const minute = Math.floor(timeOfWeek / millisecondsPerSecond / secondsPerMinute);
+                return minute;
             };
         };
 
@@ -68,8 +68,6 @@ Copyright (C) 2022 Mark D. Blackwell.
 
             // Obtain the index in the UTC week of the next slot.
             const slotIndexNext = (function() {
-                let result = 0;
-
                 // Find the first slot after the current time.
                 const functionAfterNow = function(element) {
                     return element > minuteOfWeekUtcNow;
@@ -79,11 +77,12 @@ Copyright (C) 2022 Mark D. Blackwell.
                 //console.debug(functionTimestamp() + 'slot index ' + index + '/' + slotsCount);
                 {
                     const notFound = -1;
-                    if (notFound != Math.sign(index)) {
-                        result = index;
+                    if (notFound == Math.sign(index)) {
+                        const theFirstSlot = 0;
+                        return theFirstSlot;
                     };
                 };
-                return result;
+                return index;
             })();
             //console.debug(functionTimestamp() + 'next slot index ' + slotIndexNext + '/' + slotsCount);
 
@@ -125,34 +124,31 @@ Copyright (C) 2022 Mark D. Blackwell.
 
             // Accommodate the meridian.
             const meridian = (function() {
-                let result = 'AM';
-
                 const hoursPerDay = 24;
                 const minutesPerHour = 60;
 
                 const minutesPerDay = hoursPerDay * minutesPerHour;
                 const minutesPerDayHalf = minutesPerDay / 2;
 
-                if (minutesPerDayHalf <= minuteOfDayLocal) {
+                if (minuteOfDayLocal >= minutesPerDayHalf) {
                     minuteOfDayLocal -= minutesPerDayHalf;
-                    result = 'PM';
+                    return 'PM';
                 };
-                return result;
+                return 'AM';
             })();
             //console.debug(functionTimestamp() + 'meridian ' + meridian);
 
             // Calculate the hour.
             const hourString = (function() {
                 const minutesPerHour = 60;
-                const hourOfDay = Math.floor(minuteOfDayLocal / minutesPerHour);
-                let result = hourOfDay.toString();
+                const hourMeridian = Math.floor(minuteOfDayLocal / minutesPerHour);
                 {
-                    const midnight = 0;
-                    if (midnight == hourOfDay) {
-                        result = '12';
+                    const midnightOrNoon = 0;
+                    if (midnightOrNoon == hourMeridian) {
+                        return '12';
                     };
                 };
-                return result;
+                return hourMeridian.toString();
             })();
             //console.debug(functionTimestamp() + 'hourString ' + hourString);
 
@@ -160,15 +156,14 @@ Copyright (C) 2022 Mark D. Blackwell.
             const minuteString = (function() {
                 const minutesPerHour = 60;
                 const minuteOfHour = minuteOfDayLocal % minutesPerHour;
-                const fullyExpressed = ':' + minuteOfHour.toString().padStart(2, '0');
-                let result = fullyExpressed;
                 {
                     const topOfHour = 0;
                     if (topOfHour == minuteOfHour) {
-                        result = '';
+                        return '';
                     };
                 };
-                return result;
+                const fullyExpressed = ':' + minuteOfHour.toString().padStart(2, '0');
+                return fullyExpressed;
             })();
             //console.debug(functionTimestamp() + 'minuteString \'' + minuteString + '\'');
 
@@ -204,6 +199,7 @@ Copyright (C) 2022 Mark D. Blackwell.
 
                     functionSetDescription('now', slotIndexCurrent);
 
+                    // Remember the current minute of the week.
                     minuteOfWeekUtcCurrent = slotsMinuteOfWeekUtc.at(slotIndexCurrent);
                 };
             };
@@ -235,7 +231,7 @@ Copyright (C) 2022 Mark D. Blackwell.
                 };
 
                 // The response status was perfect!
-                // Generally, browsers present to us 304 (Not Modified) responses as 200 (OK).
+                // Browsers present to JavaScript all responses that are 304 (Not Modified) as 200 (OK).
                 // See if the data has changed.
                 {
                     //console.debug(functionTimestamp() + 'Response text: ' + httpRequest.responseText);
@@ -255,6 +251,10 @@ Copyright (C) 2022 Mark D. Blackwell.
 
                         // Is the "now" UTC minute still between the "current" and "next" slots' UTC minutes?
                         const functionIsBetween = function(first, now, second) {
+                            if (now == first) {
+                                return true;
+                            };
+
                             if (now == second) {
                                 return false;
                             };
@@ -262,14 +262,15 @@ Copyright (C) 2022 Mark D. Blackwell.
                             const three = new Array(first, now, second);
                             const max = Math.max(...three);
                             const min = Math.min(...three);
-
-                            if (first <= second) {
-                                return first  == min &&
-                                       second == max;
-                            } else {
-                                return now == min ||
-                                       now == max;
+                            {
+                                const wrappedAround = second < first;
+                                if (wrappedAround) {
+                                    return now == min ||
+                                           now == max;
+                                };
                             };
+                            return min == first &&
+                                   max == second;
                         };
 
                         // Obtain the current time.
