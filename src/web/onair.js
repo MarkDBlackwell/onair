@@ -10,16 +10,6 @@ Copyright (C) 2022 Mark D. Blackwell.
 
 (function() {
     const functionDealWithAirSchedule = function() {
-        const httpRequest = new XMLHttpRequest();
-        const objectForBindingTimeoutHandlers = new Object();
-
-        let digestPrevious = '';
-        let minuteOfWeekUtcCurrent;
-        let minuteOfWeekUtcNext;
-        let webSocket;
-        let webSocketMode = 'initial';
-        let webSocketNextCheckDelaySeconds;
-
         const functionMinuteOfWeekUtcNow = function(timeNow) {
             const daysPerWeek = 7;
             // In this program, the first day of the week is Monday.
@@ -205,17 +195,9 @@ Copyright (C) 2022 Mark D. Blackwell.
             };
         };
 
-        objectForBindingTimeoutHandlers.functionHandleTimeoutExpirationSchedule = function() {
-            functionHandleTimeoutExpirationSchedule();
-        };
-
         const functionHandleTimeoutExpirationWebSocket = function() {
             webSocketNextCheckDelaySeconds *= 3;
             functionWebSocketConnect();
-        };
-
-        objectForBindingTimeoutHandlers.functionHandleTimeoutExpirationWebSocket = function() {
-            functionHandleTimeoutExpirationWebSocket();
         };
 
         const functionHttpRequestOnLoad = function() {
@@ -231,7 +213,7 @@ Copyright (C) 2022 Mark D. Blackwell.
                 };
 
                 // The response status was perfect!
-                // Browsers present to JavaScript all responses that are 304 (Not Modified) as 200 (OK).
+                // In JavaScript, browsers represent 304 (Not Modified) responses as 200 (OK).
                 // See if the data has changed.
                 {
                     //console.debug(functionTimestamp() + 'Response text: ' + httpRequest.responseText);
@@ -372,9 +354,30 @@ Copyright (C) 2022 Mark D. Blackwell.
             };
         };
 
-        if (! httpRequest) {
-            // Could not create an XmlHttp instance.
-            return;
+        const objectForBindingTimeoutHandlers = new Object();
+        {
+            objectForBindingTimeoutHandlers.functionHandleTimeoutExpirationSchedule = function() {
+                functionHandleTimeoutExpirationSchedule();
+            };
+
+            objectForBindingTimeoutHandlers.functionHandleTimeoutExpirationWebSocket = function() {
+                functionHandleTimeoutExpirationWebSocket();
+            };
+        };
+
+        let digestPrevious = '';
+        let minuteOfWeekUtcCurrent;
+        let minuteOfWeekUtcNext;
+        let webSocket;
+        let webSocketMode = 'initial';
+        let webSocketNextCheckDelaySeconds;
+
+        const httpRequest = new XMLHttpRequest();
+        {
+            const couldNotCreate = ! httpRequest;
+            if (couldNotCreate) {
+                return;
+            };
         };
 
         httpRequest.onload = function(){functionHttpRequestOnLoad()};

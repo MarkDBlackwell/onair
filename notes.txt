@@ -59,10 +59,10 @@ I'm minifying JavaScript online at https://tools.webdevpuneet.com/js-minify-and-
 
 I obtained:
 
-Name           Transferred  Size
+Name               Transferred  Size
 
-onair.css      798          764
-onair-min.css  594          389
+onair-default.css  787          737
+(minified)         586          378
 
-onair.js       3.70 K       15.52 K
-onair-min.js   1.49 K       2.35 K
+onair.js           3.76 K       15.79 K
+(minified)         1.46 K        2.29 K
