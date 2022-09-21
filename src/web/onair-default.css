@@ -13,6 +13,16 @@ body {
     font-size: 0;
     margin: 0;
 }
+#label {
+    font-weight: bolder;
+    padding-right: 8px;
+}
+#label, #now {
+    padding-left: 8px;
+}
+#label, #time {
+    font-size: 13px;
+}
 #next, #now {
     font-size: 16px;
     padding-right: 9px;
@@ -20,14 +30,4 @@ body {
 #now {
     border-left:  8px solid rgb(161, 161, 161);
     border-right: 8px solid rgb(161, 161, 161);
-}
-#now, #up {
-    padding-left: 8px;
-}
-#time, #up {
-    font-size: 13px;
-}
-#up {
-    font-weight: bolder;
-    padding-right: 8px;
 }
