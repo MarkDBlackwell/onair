@@ -44,13 +44,17 @@ I followed the helpful information in [this issue](https://github.com/vi/websoca
 
 1. Acquire two key files (see below) associated with the production server, from the web hosting company's web user interface;
 
-2. Place them in the 'out' directory;
+2. For SiteGround, after logging in, they are available by navigating to: Security, SSL Manager, Manage SSL, Actions, View Certificate;
+
+3. Place them in the 'out' directory;
 
 4. Construct the PKCS-12 file by:
 
    a.)  openssl pkcs12 -export -out var/lets-encrypt.pkcs12 -inkey out/{production domain name}-private-key.txt -in out/{production domain name}-certificate.txt
 
-5. In FireFox, note the expiration date of the files' validity. Set a Gmail calendar alert for that date.
+5. When prompted, use an empty password (twice);
+
+6. In FireFox, note the expiration date of the files' validity. Set a Gmail calendar alert for that date.
 
 -------------------
 I'm minifying CSS online at https://www.minifier.com/ .
