@@ -1,3 +1,46 @@
+-------------------
+TODO: Automatically handle savings time switching.
+
+Currently, to make the switch, we must run the input script.
+
+JavaScript:
+
+See:
+
+https://stackoverflow.com/a/57842203
+
+date = new Date('Feb 28 2013 19:00:00');
+utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+tzDate = new Date(date.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+offset = utcDate.getTime() - tzDate.getTime();
+date.setTime( date.getTime() + offset );
+date.toLocaleString('en-US');
+
+Produces:
+
+"3/1/2013, 12:00:00 AM"
+
+With something like "America/New_York" added to schedule.json,
+use this code to calculate whether to interpret a show time as being in standard or daylight savings time.
+
+Ruby:
+
+See:
+
+https://github.com/tzinfo/tzinfo
+https://rubydoc.info/gems/tzinfo/TZInfo/Timezone
+
+Use this to produce "America/New_York".
+
+Alternatively, just specify this value in a file.
+
+-------------------
+TODO: Solve the following problem.
+
+The timeout for changing shows becomes erroneous if the computer is slept briefly,
+but not long enough for it to think the websocket connection is broken.
+
+-------------------
 Analogs to useful Windows batch variables:
 
 # The path to the current working directory (without a trailing separator):
