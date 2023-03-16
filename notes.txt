@@ -10,15 +10,37 @@ See:
 https://stackoverflow.com/a/57842203
 
 date = new Date('Feb 28 2013 19:00:00');
-utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-tzDate = new Date(date.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-offset = utcDate.getTime() - tzDate.getTime();
-date.setTime( date.getTime() + offset );
+dateUtc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+dateEast = new Date(date.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+offsetEast = dateUtc.getTime() - dateEast.getTime();
+date.setTime( date.getTime() + offsetEast );
 date.toLocaleString('en-US');
 
 Produces:
 
 "3/1/2013, 12:00:00 AM"
+
+date = new Date('Feb 28 2013 19:00:00');
+dateUtc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+dateWest = new Date(date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+offsetWest = dateUtc.getTime() - dateWest.getTime();
+date.setTime( date.getTime() + offsetWest );
+date.toLocaleString('en-US');
+
+Produces:
+
+"3/1/2013, 3:00:00 AM"
+
+date = new Date('Aug 28 2013 19:00:00');
+dateUtc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+dateWest = new Date(date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+offsetWest = dateUtc.getTime() - dateWest.getTime();
+date.setTime( date.getTime() + offsetWest );
+date.toLocaleString('en-US');
+
+Produces:
+
+"8/29/2013, 2:00:00 AM"
 
 With something like "America/New_York" added to schedule.json,
 use this code to calculate whether to interpret a show time as being in standard or daylight savings time.
