@@ -119,7 +119,7 @@ I followed the helpful information in [this issue](https://github.com/vi/websoca
 
 5. When prompted, use an empty password (twice);
 
-6. In FireFox, note the expiration date of the files' validity. Set a Gmail calendar alert for that date.
+6. In either SiteGround or FireFox, note the expiration date of the files' (which means the new certificates') validity. Set a Gmail calendar alert for that date.
 
 -------------------
 I'm minifying CSS online at https://www.minifier.com/ .
