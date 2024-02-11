@@ -52,7 +52,20 @@ sudo systemctl restart websocat
 
 mv $script_basename $script_basename-save
 
-rm -fv *.css *.html *.js *.pkcs12 *.service *.sh *.timer update-check.sh
+rm -fv \
+  websocat-update-check.service \
+  websocat-update-check.timer \
+  websocat.service
+rm -fv \
+  output.pkcs12 \
+  update-check.sh
+rm -fv \
+  container.css \
+  container.html \
+  onair-default.css \
+  onair.css \
+  onair.js \
+  onair.html
 
 mv $script_basename-save $script_basename
 
